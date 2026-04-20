@@ -4,11 +4,9 @@ import { PrimeNG } from 'primeng/config';
 import { TRANSLATION_CONFIG } from './core/primeng/translation-es.config';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { AppHeader } from './layout/app-header/app-header';
-
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ToastModule, ConfirmDialogModule, AppHeader],
+  imports: [RouterOutlet, ToastModule, ConfirmDialogModule],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
