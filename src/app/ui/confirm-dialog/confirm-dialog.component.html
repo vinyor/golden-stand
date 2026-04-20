@@ -1,0 +1,9 @@
+<p-dialog header="AVISO" [modal]="modal()" [(visible)]="visible" [style]="{ width: '30rem' }">
+  <div class="flex items-center gap-4 mb-4">
+    <p>{{ message() }}</p>
+  </div>
+  <div class="flex justify-end gap-2">
+    <p-button label="Cancelar" severity="secondary" (click)="cancel()" />
+    <p-button label="Aceptar" (click)="accept()" />
+  </div>
+</p-dialog>

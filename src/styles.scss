@@ -1,1 +1,132 @@
-/* You can add global styles to this file, and also import other style files */
+@import "primeicons/primeicons.css";
+
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family-body);
+    color: var(--font-main-color);
+    background-color: var(--color-surface);
+    font-size: var(--font-size-md);
+}
+
+ul,
+ol {
+    list-style: none;
+    margin: 0;
+}
+
+ol {
+    padding: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+svg {
+    display: inline-block;
+    flex-shrink: 0;
+    fill: currentColor;
+    vertical-align: middle;
+}
+
+fieldset {
+    border: none;
+    padding: 0;
+}
+
+legend {
+    padding: 0;
+}
+
+:root {
+    //colors
+    --color-primary: #FFD700;
+    --color-secondary: #50C878;
+    --color-tertiary: #4A4A4A;
+    --color-neutral: #121212;
+    --color-white: #FFFFFF;
+    --color-black: #000000;
+    --color-gray: #808080;
+    --color-surface: #131313;
+
+    //spacing
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 0.75rem;
+    --spacing-lg: 1rem;
+    --spacing-xl: 1.5rem;
+    --spacing-xxl: 2rem;
+
+    //font-size
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-md: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-xxl: 1.5rem;
+    --font-size-2xl: 2rem;
+    --font-size-3xl: 3rem;
+
+    // font
+    --font-main-color: #E5E2E1;
+    --font-family-body: 'Inter', sans-serif;
+    --font-family-heading: 'Epilogue', sans-serif;
+    --font-weight-bold: 700;
+    --font-weight-regular: 400;
+}
+
+.text-bold {
+    font-weight: var(--font-weight-bold);
+}
+
+.text-italic {
+    font-style: var(--font-italic);
+}
+
+
+.title-bold {
+    font-weight: var(--font-weight-bold);
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-3xl);
+    font-style: italic;
+    line-height: 100%;
+    letter-spacing: -0.125rem;
+    margin: 0;
+}
+
+.title-normal {
+    font-weight: var(--font-weight-regular);
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-3xl);
+    line-height: 100%;
+    letter-spacing: -0.125rem;
+    margin: 0;
+    font-style: italic;
+}
+
+.w-100 {
+    width: 100%;
+}
