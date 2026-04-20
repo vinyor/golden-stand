@@ -1,0 +1,20 @@
+<button
+  type="button"
+  class="group-card"
+  [attr.aria-label]="'Abrir grupo ' + groupName()"
+>
+  <div class="group-card__top">
+    <span class="group-card__icon-box" aria-hidden="true">
+      <i [attr.class]="iconClasses()" [style.color]="iconColor()"></i>
+    </span>
+    <div class="group-card__points">
+      <span class="group-card__points-label">YOUR POINTS</span>
+      <span class="group-card__points-value">{{ points() | number : '1.0-0' }} PTS</span>
+    </div>
+  </div>
+  <h3 class="group-card__title">{{ groupName() }}</h3>
+  <div class="group-card__meta">
+    <i class="pi pi-users group-card__meta-icon" aria-hidden="true"></i>
+    <span class="group-card__meta-text">{{ participantCount() | number : '1.0-0' }} Participants</span>
+  </div>
+</button>
