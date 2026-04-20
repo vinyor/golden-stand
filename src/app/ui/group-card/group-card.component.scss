@@ -1,0 +1,121 @@
+.group-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--spacing-lg);
+  width: 100%;
+  margin: 0;
+  padding: var(--spacing-lg);
+  text-align: left;
+  cursor: pointer;
+  border: 1px solid color-mix(in srgb, var(--color-gray) 35%, transparent);
+  border-radius: 1rem;
+  background-color: color-mix(in srgb, var(--color-neutral) 78%, var(--color-tertiary));
+  color: var(--color-white);
+  font: inherit;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.group-card:hover {
+  border-color: color-mix(in srgb, var(--color-primary) 55%, var(--color-gray));
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--color-primary) 35%, transparent),
+    0 0.75rem 1.75rem color-mix(in srgb, var(--color-black) 65%, transparent);
+  transform: translateY(-2px);
+}
+
+.group-card:focus {
+  outline: none;
+}
+
+.group-card:focus-visible {
+  border-color: var(--color-primary);
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--color-primary) 65%, transparent),
+    0 0.75rem 1.75rem color-mix(in srgb, var(--color-black) 65%, transparent);
+  transform: translateY(-2px);
+}
+
+@media (hover: none) {
+  .group-card:active {
+    border-color: color-mix(in srgb, var(--color-primary) 55%, var(--color-gray));
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--color-primary) 35%, transparent),
+      0 0.5rem 1.25rem color-mix(in srgb, var(--color-black) 55%, transparent);
+  }
+}
+
+.group-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+}
+
+.group-card__icon-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.5rem;
+  background-color: color-mix(in srgb, var(--color-black) 55%, var(--color-neutral));
+}
+
+.group-card__icon {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.group-card__points {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--spacing-xs);
+  text-align: right;
+}
+
+.group-card__points-label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-gray);
+}
+
+.group-card__points-value {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+}
+
+.group-card__title {
+  margin: 0;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.3;
+  color: var(--color-white);
+}
+
+.group-card__meta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--font-main-color);
+}
+
+.group-card__meta-icon {
+  font-size: var(--font-size-sm);
+  opacity: 0.9;
+}
+
+.group-card__meta-text {
+  font-size: var(--font-size-sm);
+}
