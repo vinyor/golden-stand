@@ -1,0 +1,83 @@
+<p-dialog
+  [visible]="open()"
+  [modal]="true"
+  [closable]="false"
+  [showHeader]="false"
+  [dismissableMask]="true"
+  [closeOnEscape]="true"
+  [blockScroll]="true"
+  [focusOnShow]="true"
+  [style]="dialogRootStyle"
+  [contentStyle]="dialogContentStyle"
+  styleClass="group-created-dialog"
+  appendTo="body"
+  (visibleChange)="onDialogVisibleChange($event)"
+  (onShow)="onDialogShow()"
+>
+  <div class="group-created">
+    <div class="group-created__icon-wrap" aria-hidden="true">
+      <img
+        ngSrc="/icons/medal.svg"
+        width="20"
+        height="27"
+        class="group-created__medal"
+        alt=""
+      />
+    </div>
+
+    <h2 class="group-created__title">Grupo creado</h2>
+    <p class="group-created__subtitle">
+      Invita a tus amigos al grupo y que comience el juego.
+    </p>
+
+    <div class="group-created__card">
+      <div class="group-created__row">
+        <div class="group-created__thumb" aria-hidden="true">
+          <img
+            ngSrc="/images/stadium.png"
+            width="112"
+            height="112"
+            class="group-created__thumb-img"
+            alt=""
+          />
+        </div>
+        <p class="group-created__name">{{ groupName() }}</p>
+      </div>
+
+      <div class="group-created__code">
+        <span class="group-created__code-label">Código de invitación</span>
+        <div class="group-created__code-row">
+          <p class="group-created__code-value" [attr.title]="inviteCode()">{{ inviteCode() }}</p>
+          <button
+            type="button"
+            class="group-created__copy-btn"
+            (click)="onCopyCode()"
+            aria-label="Copiar código de invitación"
+          >
+            <i class="pi pi-copy group-created__copy-icon" aria-hidden="true"></i>
+            <span class="group-created__copy-label">Copiar</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <p class="visually-hidden" role="status" aria-live="polite">
+      @switch (copyFeedback()) {
+        @case ('copied') {
+          <span>Código copiado al portapapeles.</span>
+        }
+        @case ('error') {
+          <span>No se pudo copiar. Selecciona el código manualmente.</span>
+        }
+        @default {
+          <span></span>
+        }
+      }
+    </p>
+
+    <button type="button" class="group-created__access-btn" (click)="onAccessGroup()">
+      <span>Acceder al grupo</span>
+      <span class="group-created__access-arrow" aria-hidden="true">→</span>
+    </button>
+  </div>
+</p-dialog>

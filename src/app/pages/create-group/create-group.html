@@ -1,0 +1,230 @@
+<form class="create-group" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+  <header class="create-group__header">
+    <h1 class="create-group__title">Configurar Grupo</h1>
+    <p class="create-group__lead">
+      Define los aspectos básicos de la porra y cómo los jugadores conseguirán puntos.
+    </p>
+  </header>
+
+  <section class="create-group__section" aria-labelledby="create-group-info-heading">
+    <h2 id="create-group-info-heading" class="create-group__section-title">
+      <span class="create-group__section-title-accent" aria-hidden="true"></span>
+      Información del grupo
+    </h2>
+    <div class="create-group__field">
+      <label class="create-group__label" for="group-name">Nombre del grupo</label>
+      <input
+        id="group-name"
+        class="create-group__input create-group__input--text"
+        type="text"
+        formControlName="groupName"
+        autocomplete="off"
+        maxlength="120"
+        placeholder="Champions Lounge"
+        [attr.aria-invalid]="form.controls.groupName.invalid && form.controls.groupName.touched"
+        [attr.aria-describedby]="
+          form.controls.groupName.invalid && form.controls.groupName.touched ? 'group-name-hint' : null
+        "
+      />
+      <p id="group-name-hint" class="create-group__hint">
+        @if (form.controls.groupName.hasError('required') && form.controls.groupName.touched) {
+          <span>Introduce un nombre para el grupo.</span>
+        }
+      </p>
+    </div>
+  </section>
+
+  <section class="create-group__section" aria-labelledby="create-group-scoring-heading">
+    <h2 id="create-group-scoring-heading" class="create-group__section-title">
+      <span class="create-group__section-title-accent" aria-hidden="true"></span>
+      Puntuaciones
+    </h2>
+    <div class="create-group__scoring-grid" formGroupName="scoring">
+      <article class="create-group__score-card">
+        <div class="create-group__score-card-text">
+          <h3 class="create-group__score-card-title">Ganador correcto</h3>
+          <p class="create-group__score-card-sub">Acierto simple</p>
+        </div>
+        <div class="create-group__score-input-wrap">
+          <label class="visually-hidden" for="score-correct-winner">Puntos por ganador correcto</label>
+          <input
+            id="score-correct-winner"
+            class="create-group__input create-group__input--score"
+            type="number"
+            inputmode="numeric"
+            min="0"
+            max="999"
+            step="1"
+            formControlName="correctWinner"
+            [attr.aria-invalid]="
+              form.controls.scoring.controls.correctWinner.invalid &&
+              form.controls.scoring.controls.correctWinner.touched
+            "
+          />
+        </div>
+      </article>
+      <article class="create-group__score-card">
+        <div class="create-group__score-card-text">
+          <h3 class="create-group__score-card-title">Marcador exacto</h3>
+          <p class="create-group__score-card-sub">Pleno</p>
+        </div>
+        <div class="create-group__score-input-wrap">
+          <label class="visually-hidden" for="score-exact">Puntos por marcador exacto</label>
+          <input
+            id="score-exact"
+            class="create-group__input create-group__input--score"
+            type="number"
+            inputmode="numeric"
+            min="0"
+            max="999"
+            step="1"
+            formControlName="exactScore"
+            [attr.aria-invalid]="
+              form.controls.scoring.controls.exactScore.invalid &&
+              form.controls.scoring.controls.exactScore.touched
+            "
+          />
+        </div>
+      </article>
+      <article class="create-group__score-card">
+        <div class="create-group__score-card-text">
+          <h3 class="create-group__score-card-title">Clasificación</h3>
+          <p class="create-group__score-card-sub">Clasificación a eliminatorias</p>
+        </div>
+        <div class="create-group__score-input-wrap">
+          <label class="visually-hidden" for="score-classification">Puntos por clasificación acertada</label>
+          <input
+            id="score-classification"
+            class="create-group__input create-group__input--score"
+            type="number"
+            inputmode="numeric"
+            min="0"
+            max="999"
+            step="1"
+            formControlName="classification"
+            [attr.aria-invalid]="
+              form.controls.scoring.controls.classification.invalid &&
+              form.controls.scoring.controls.classification.touched
+            "
+          />
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="create-group__section" aria-labelledby="create-group-extra-heading">
+    <div class="create-group__section-heading-row">
+      <h2 id="create-group-extra-heading" class="create-group__section-title">
+        <span class="create-group__section-title-accent" aria-hidden="true"></span>
+        Puntos extra
+      </h2>
+      <span class="create-group__badge" role="status">Bonus</span>
+    </div>
+    <div class="create-group__extra-grid" formGroupName="extraPoints">
+      <article class="create-group__extra-card">
+        <div class="create-group__extra-card-top">
+          <span class="create-group__extra-icon" aria-hidden="true">
+            <i class="pi pi-trophy"></i>
+          </span>
+          <div>
+            <h3 class="create-group__extra-title">Máximo goleador</h3>
+            <p class="create-group__extra-sub">Bota de oro</p>
+          </div>
+        </div>
+        <div class="create-group__extra-footer">
+          <span class="create-group__extra-pts-label">Pts</span>
+          <div class="create-group__extra-input-wrap">
+            <label class="visually-hidden" for="extra-golden-boot">Puntos extra por máximo goleador</label>
+            <input
+              id="extra-golden-boot"
+              class="create-group__input create-group__input--score create-group__input--score-extra create-group__input--score-wide"
+              type="number"
+              inputmode="numeric"
+              min="0"
+              max="999"
+              step="1"
+              formControlName="goldenBoot"
+              [attr.aria-invalid]="
+                form.controls.extraPoints.controls.goldenBoot.invalid &&
+                form.controls.extraPoints.controls.goldenBoot.touched
+              "
+            />
+          </div>
+        </div>
+      </article>
+      <article class="create-group__extra-card">
+        <div class="create-group__extra-card-top">
+          <span class="create-group__extra-icon" aria-hidden="true">
+            <i class="pi pi-crown"></i>
+          </span>
+          <div>
+            <h3 class="create-group__extra-title">MVP torneo</h3>
+            <p class="create-group__extra-sub">Mejor jugador del torneo</p>
+          </div>
+        </div>
+        <div class="create-group__extra-footer">
+          <span class="create-group__extra-pts-label">Pts</span>
+          <div class="create-group__extra-input-wrap">
+            <label class="visually-hidden" for="extra-mvp-tournament">Puntos extra por MVP del torneo</label>
+            <input
+              id="extra-mvp-tournament"
+              class="create-group__input create-group__input--score create-group__input--score-extra create-group__input--score-wide"
+              type="number"
+              inputmode="numeric"
+              min="0"
+              max="999"
+              step="1"
+              formControlName="mvpTournament"
+              [attr.aria-invalid]="
+                form.controls.extraPoints.controls.mvpTournament.invalid &&
+                form.controls.extraPoints.controls.mvpTournament.touched
+              "
+            />
+          </div>
+        </div>
+      </article>
+      <article class="create-group__extra-card">
+        <div class="create-group__extra-card-top">
+          <span class="create-group__extra-icon" aria-hidden="true">
+            <i class="pi pi-face-smile"></i>
+          </span>
+          <div>
+            <h3 class="create-group__extra-title">MVP joven</h3>
+            <p class="create-group__extra-sub">Mejor jugador joven del torneo</p>
+          </div>
+        </div>
+        <div class="create-group__extra-footer">
+          <span class="create-group__extra-pts-label">Pts</span>
+          <div class="create-group__extra-input-wrap">
+            <label class="visually-hidden" for="extra-mvp-young">Puntos extra por MVP joven</label>
+            <input
+              id="extra-mvp-young"
+              class="create-group__input create-group__input--score create-group__input--score-extra create-group__input--score-wide"
+              type="number"
+              inputmode="numeric"
+              min="0"
+              max="999"
+              step="1"
+              formControlName="mvpYoung"
+              [attr.aria-invalid]="
+                form.controls.extraPoints.controls.mvpYoung.invalid &&
+                form.controls.extraPoints.controls.mvpYoung.touched
+              "
+            />
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <footer class="create-group__actions">
+    <button class="create-group__submit" type="submit" [disabled]="form.invalid">Crear grupo</button>
+  </footer>
+</form>
+
+<app-group-created-modal
+  [open]="groupCreatedModalOpen()"
+  [groupName]="createdGroupDisplayName()"
+  [inviteCode]="createdInviteCode()"
+  (dismiss)="onGroupCreatedDismiss()"
+/>

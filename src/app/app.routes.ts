@@ -9,7 +9,7 @@ export const routes: Routes = [
       {
         path: '',
         loadComponent: () => import('./pages/home/home').then((m) => m.Home),
-        data: { title: 'Home' },
+        data: { title: 'Inicio' },
       },
       {
         path: 'rankings',
@@ -19,13 +19,18 @@ export const routes: Routes = [
       {
         path: 'predictions',
         loadComponent: () => import('./pages/predictions/predictions').then((m) => m.Predictions),
-        data: { title: 'Predictions' },
+        data: { title: 'Predicciones' },
       },
       {
         path: 'profile',
         loadComponent: () => import('./pages/profile/profile').then((m) => m.Profile),
-        data: { title: 'Profile' },
+        data: { title: 'Perfil' },
       },
+      {
+        path: 'create-group',
+        loadComponent: () => import('./pages/create-group/create-group').then((m) => m.CreateGroup),
+        data: { title: 'Crear Grupo' },
+      }
     ],
   },
 ];
