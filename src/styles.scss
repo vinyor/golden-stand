@@ -130,3 +130,14 @@ legend {
 .w-100 {
     width: 100%;
 }
+
+/* Group created modal: p-dialog is often appended to body, outside component encapsulation */
+.p-dialog.group-created-dialog {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+}
+
+.p-dialog.group-created-dialog .p-dialog-content {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+}
