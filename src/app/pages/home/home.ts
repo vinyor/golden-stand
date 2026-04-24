@@ -1,7 +1,12 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { Button } from 'primeng/button';
 import { GroupCardComponent } from '../../ui/group-card/group-card.component';
+import { Router } from '@angular/router';
+import {
+  JoinGroupDialog,
+  JoinGroupPayload,
+} from './modals/join-group-dialog/join-group-dialog';
 
 export interface ActiveGroupCard {
   id: string;
@@ -14,12 +19,33 @@ export interface ActiveGroupCard {
 
 @Component({
   selector: 'app-home',
-  imports: [NgOptimizedImage, Button, GroupCardComponent],
+  imports: [NgOptimizedImage, Button, GroupCardComponent, JoinGroupDialog],
   templateUrl: './home.html',
   styleUrl: './home.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Home {
+  private readonly router = inject(Router);
+
+  protected readonly joinGroupDialogOpen = signal(false);
+
+  protected navigateToCreateGroup(): void {
+    void this.router.navigate(['/create-group']);
+  }
+
+  protected openJoinGroupDialog(): void {
+    this.joinGroupDialogOpen.set(true);
+  }
+
+  protected onJoinGroupDialogDismiss(): void {
+    this.joinGroupDialogOpen.set(false);
+  }
+
+  protected onJoinGroupRequest(_payload: JoinGroupPayload): void {
+    this.joinGroupDialogOpen.set(false);
+    // TODO: call join-group API when available
+  }
+
   protected readonly activeGroups: readonly ActiveGroupCard[] = [
     {
       id: '1',
