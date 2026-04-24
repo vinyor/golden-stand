@@ -1,10 +1,57 @@
-$bp-desktop: 768px;
+﻿$bp-desktop: 768px;
 
 // Avoid `display: contents` on the host: it breaks layout/emulated encapsulation edge cases
 // and can make the desktop nav disappear when the center flex item collapses.
 :host {
   display: block;
   width: 100%;
+}
+
+.app-header__mobile-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--spacing-md) var(--spacing-lg);
+  padding-top: calc(var(--spacing-md) + env(safe-area-inset-top, 0px));
+  backdrop-filter: blur(12px);
+  background-color: rgba(19, 19, 19, 0.92);
+  border-bottom: 1px solid rgba(74, 74, 74, 0.35);
+
+  @media (min-width: $bp-desktop) {
+    display: none;
+  }
+}
+
+.app-header__brand--compact {
+  min-width: 0;
+  font-size: var(--font-size-lg);
+  letter-spacing: -0.05rem;
+  line-height: 1.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.app-header__avatar--link {
+  text-decoration: none;
+  color: inherit;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.app-header__avatar--link:hover {
+  opacity: 0.9;
+}
+
+.app-header__avatar--active {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 1px rgba(255, 215, 0, 0.35);
 }
 
 .app-header__desktop {

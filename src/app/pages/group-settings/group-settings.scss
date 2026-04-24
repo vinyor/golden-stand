@@ -1,0 +1,22 @@
+﻿.group-settings {
+  max-width: 40rem;
+}
+
+.group-settings__title {
+  margin: 0 0 var(--spacing-md);
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-xl);
+  color: var(--font-main-color);
+}
+
+.group-settings__meta {
+  margin: 0 0 var(--spacing-sm);
+  font-family: monospace;
+  color: var(--color-primary);
+}
+
+.group-settings__hint {
+  margin: 0;
+  color: var(--font-main-color);
+  opacity: 0.65;
+}

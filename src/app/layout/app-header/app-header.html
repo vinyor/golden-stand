@@ -1,54 +1,75 @@
+﻿<div class="app-header__mobile-top">
+  <a [routerLink]="homeLink" class="app-header__brand app-header__brand--compact">The Golden Stand</a>
+  <a
+    routerLink="/profile"
+    class="app-header__avatar app-header__avatar--link"
+    aria-label="Ir al perfil de usuario"
+    routerLinkActive="app-header__avatar--active"
+    [routerLinkActiveOptions]="profileLinkActiveOptions"
+  >
+    <i class="pi pi-user app-header__avatar-icon" aria-hidden="true"></i>
+  </a>
+</div>
+
 <header class="app-header__desktop">
   <div class="app-header__desktop-bar">
-    <a routerLink="/" class="app-header__brand">
-      The Golden Stand
-    </a>
-    <nav class="app-header__desktop-nav" aria-label="Main navigation">
-      <ul class="app-header__desktop-list">
-        @for (item of navItems; track item.path) {
-          <li class="app-header__desktop-item">
-            <a
-              [routerLink]="item.path"
-              routerLinkActive="app-header__desktop-link--active"
-              [routerLinkActiveOptions]="linkActiveOptions(item.path)"
-              class="app-header__desktop-link"
-            >
-              {{ item.label }}
-            </a>
-          </li>
-        }
-      </ul>
-    </nav>
+    <a [routerLink]="homeLink" class="app-header__brand">The Golden Stand</a>
+    @if (navItems().length > 0) {
+      <nav class="app-header__desktop-nav" aria-label="Navegación principal">
+        <ul class="app-header__desktop-list">
+          @for (item of navItems(); track trackNavPath($index, item)) {
+            <li class="app-header__desktop-item">
+              <a
+                [routerLink]="item.path"
+                routerLinkActive="app-header__desktop-link--active"
+                [routerLinkActiveOptions]="linkActiveOptions(item)"
+                class="app-header__desktop-link"
+              >
+                {{ item.label }}
+              </a>
+            </li>
+          }
+        </ul>
+      </nav>
+    }
     <div class="app-header__actions">
-      <button type="button" class="app-header__icon-btn" aria-label="Notifications">
+      <button type="button" class="app-header__icon-btn" aria-label="Notificaciones">
         <i class="pi pi-bell" aria-hidden="true"></i>
       </button>
-      <button type="button" class="app-header__icon-btn" aria-label="Settings">
+      <button type="button" class="app-header__icon-btn" aria-label="Preferencias rápidas">
         <i class="pi pi-cog" aria-hidden="true"></i>
       </button>
-      <div class="app-header__avatar" role="img" aria-label="User profile">
+      <a
+        routerLink="/profile"
+        class="app-header__avatar app-header__avatar--link"
+        aria-label="Ir al perfil de usuario"
+        routerLinkActive="app-header__avatar--active"
+        [routerLinkActiveOptions]="profileLinkActiveOptions"
+      >
         <i class="pi pi-user app-header__avatar-icon" aria-hidden="true"></i>
-      </div>
+      </a>
     </div>
   </div>
 </header>
 
-<nav class="app-header__mobile" aria-label="Main navigation">
-  <ul class="app-header__mobile-tabs">
-    @for (item of navItems; track item.path) {
-      <li class="app-header__mobile-tab">
-        <a
-          [routerLink]="item.path"
-          routerLinkActive="app-header__mobile-link--active"
-          [routerLinkActiveOptions]="linkActiveOptions(item.path)"
-          class="app-header__mobile-link"
-        >
-          <span class="app-header__mobile-link-inner">
-            <i [class]="item.iconClass + ' app-header__mobile-icon'" aria-hidden="true"></i>
-            <span class="app-header__mobile-label">{{ item.mobileLabel }}</span>
-          </span>
-        </a>
-      </li>
-    }
-  </ul>
-</nav>
+@if (navItems().length > 0) {
+  <nav class="app-header__mobile" aria-label="Navegación principal">
+    <ul class="app-header__mobile-tabs">
+      @for (item of navItems(); track trackNavPath($index, item)) {
+        <li class="app-header__mobile-tab">
+          <a
+            [routerLink]="item.path"
+            routerLinkActive="app-header__mobile-link--active"
+            [routerLinkActiveOptions]="linkActiveOptions(item)"
+            class="app-header__mobile-link"
+          >
+            <span class="app-header__mobile-link-inner">
+              <i [class]="item.iconClass + ' app-header__mobile-icon'" aria-hidden="true"></i>
+              <span class="app-header__mobile-label">{{ item.mobileLabel }}</span>
+            </span>
+          </a>
+        </li>
+      }
+    </ul>
+  </nav>
+}

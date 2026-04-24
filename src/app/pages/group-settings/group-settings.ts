@@ -1,15 +1,13 @@
 ﻿import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { NavigationChromeService } from '../../core/navigation/navigation-chrome.service';
-import { AppHeader } from '../app-header/app-header';
 
 @Component({
-  selector: 'app-page-shell',
-  imports: [RouterOutlet, AppHeader],
-  templateUrl: './page-shell.html',
-  styleUrl: './page-shell.scss',
+  selector: 'app-group-settings',
+  imports: [],
+  templateUrl: './group-settings.html',
+  styleUrl: './group-settings.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PageShell {
+export class GroupSettings {
   protected readonly chrome = inject(NavigationChromeService);
 }

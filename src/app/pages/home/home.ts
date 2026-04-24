@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+﻿import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { Button } from 'primeng/button';
 import { GroupCardComponent } from '../../ui/group-card/group-card.component';
@@ -9,7 +9,8 @@ import {
 } from './modals/join-group-dialog/join-group-dialog';
 
 export interface ActiveGroupCard {
-  id: string;
+  /** URL segment for `/grupos/:code`. */
+  code: string;
   groupName: string;
   points: number;
   participantCount: number;
@@ -46,9 +47,13 @@ export class Home {
     // TODO: call join-group API when available
   }
 
+  protected navigateToGroup(code: string): void {
+    void this.router.navigate(['/grupos', code]);
+  }
+
   protected readonly activeGroups: readonly ActiveGroupCard[] = [
     {
-      id: '1',
+      code: 'euro-elite-2024',
       groupName: 'EURO ELITE 2024',
       points: 742,
       participantCount: 24,
@@ -56,7 +61,7 @@ export class Home {
       iconColor: 'var(--color-primary)',
     },
     {
-      id: '2',
+      code: 'champions-pro',
       groupName: 'CHAMPIONS LEAGUE PRO',
       points: 1205,
       participantCount: 156,
@@ -64,7 +69,7 @@ export class Home {
       iconColor: 'var(--color-secondary)',
     },
     {
-      id: '3',
+      code: 'weekend-warriors',
       groupName: 'WEEKEND WARRIORS',
       points: 430,
       participantCount: 8,
