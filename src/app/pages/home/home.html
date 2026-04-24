@@ -1,4 +1,10 @@
-<div class="home">
+<app-join-group-dialog
+  [open]="joinGroupDialogOpen()"
+  (dismiss)="onJoinGroupDialogDismiss()"
+  (joinRequest)="onJoinGroupRequest($event)"
+/>
+
+<div class="home" [class.home--has-groups]="activeGroups.length > 0">
   <section class="home__hero" aria-labelledby="home-hero-heading">
     <div class="home__hero-inner">
       <div class="home__hero-copy">
@@ -10,7 +16,7 @@
           Crea tu propio grupo o únete a uno existente. Realiza tu predicción y confía en tu intuición.
         </p>
         <div class="home__hero-actions">
-          <button type="button" class="home__btn home__btn--primary">
+          <button type="button" class="home__btn home__btn--primary" (click)="navigateToCreateGroup()">
             <img
               class="home__btn-icon"
               ngSrc="/icons/create.svg"
@@ -21,7 +27,7 @@
             />
             <span>CREAR NUEVO GRUPO</span>
           </button>
-          <button type="button" class="home__btn home__btn--secondary">
+          <button type="button" class="home__btn home__btn--secondary" (click)="openJoinGroupDialog()">
             <img
               class="home__btn-icon"
               ngSrc="/icons/join.svg"
@@ -56,15 +62,17 @@
           <p class="home__panel-eyebrow">TU PANEL</p>
           <h2 id="home-panel-heading" class="home__panel-title">GRUPOS ACTIVOS</h2>
         </div>
-        <p-button
-          type="button"
-          label="VER TODOS"
-          icon="pi pi-angle-right"
-          iconPos="right"
-          [link]="true"
-          [text]="true"
-          styleClass="home__panel-all"
-        />
+        <div class="home__panel-all-desktop">
+          <p-button
+            type="button"
+            label="VER TODOS"
+            icon="pi pi-angle-right"
+            iconPos="right"
+            [link]="true"
+            [text]="true"
+            styleClass="home__panel-all"
+          />
+        </div>
       </header>
       <ul class="home__panel-cards">
         @for (g of activeGroups; track g.id) {
@@ -79,6 +87,12 @@
           </li>
         }
       </ul>
+      <div class="home__panel-all-mobile">
+        <button type="button" class="home__btn home__btn--secondary home__panel-view-all-mobile">
+          <span>VER TODOS</span>
+          <i class="pi pi-angle-right home__btn-icon" aria-hidden="true"></i>
+        </button>
+      </div>
     </div>
   </section>
 </div>

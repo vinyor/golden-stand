@@ -1,0 +1,89 @@
+<p-dialog
+  [visible]="open()"
+  [modal]="true"
+  [closable]="false"
+  [showHeader]="false"
+  [dismissableMask]="true"
+  [closeOnEscape]="true"
+  [blockScroll]="true"
+  [focusOnShow]="true"
+  [style]="dialogRootStyle"
+  [contentStyle]="dialogContentStyle"
+  styleClass="join-group-dialog"
+  appendTo="body"
+  (visibleChange)="onDialogVisibleChange($event)"
+  (onShow)="onDialogShow()"
+>
+  <div class="join-group">
+    <h2 class="join-group__title">Unirse a un grupo</h2>
+    <p class="join-group__subtitle">Introduce tu nombre y el código que te ha compartido el administrador.</p>
+
+    <form class="join-group__form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+      <div class="join-group__field">
+        <label class="join-group__label" for="join-display-name">Tu nombre</label>
+        <input
+          id="join-display-name"
+          class="join-group__input"
+          type="text"
+          formControlName="displayName"
+          autocomplete="name"
+          maxlength="120"
+          placeholder="Ej. Alex"
+          [attr.aria-invalid]="
+            form.controls.displayName.invalid && form.controls.displayName.touched
+          "
+          [attr.aria-describedby]="
+            form.controls.displayName.invalid && form.controls.displayName.touched
+              ? 'join-display-name-hint'
+              : null
+          "
+        />
+        <p id="join-display-name-hint" class="join-group__hint">
+          @if (form.controls.displayName.hasError('required') && form.controls.displayName.touched) {
+            <span>Introduce tu nombre.</span>
+          }
+        </p>
+      </div>
+
+      <div class="join-group__field">
+        <label class="join-group__label" for="join-group-code">Código del grupo</label>
+        <input
+          id="join-group-code"
+          class="join-group__input join-group__input--code"
+          type="text"
+          formControlName="groupCode"
+          autocomplete="off"
+          maxlength="32"
+          placeholder="Ej. ABC-123"
+          spellcheck="false"
+          [attr.aria-invalid]="form.controls.groupCode.invalid && form.controls.groupCode.touched"
+          [attr.aria-describedby]="
+            form.controls.groupCode.invalid && form.controls.groupCode.touched
+              ? 'join-group-code-hint'
+              : null
+          "
+        />
+        <p id="join-group-code-hint" class="join-group__hint">
+          @if (form.controls.groupCode.hasError('required') && form.controls.groupCode.touched) {
+            <span>Introduce el código del grupo.</span>
+          } @else if (form.controls.groupCode.hasError('minlength') && form.controls.groupCode.touched) {
+            <span>El código debe tener al menos 3 caracteres.</span>
+          }
+        </p>
+      </div>
+
+      <div class="join-group__actions">
+        <button type="button" class="join-group__btn join-group__btn--secondary" (click)="onCancel()">
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          class="join-group__btn join-group__btn--primary"
+          [disabled]="form.invalid"
+        >
+          Unirse
+        </button>
+      </div>
+    </form>
+  </div>
+</p-dialog>
