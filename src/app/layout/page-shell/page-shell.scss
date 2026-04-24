@@ -1,4 +1,4 @@
-.app-shell {
+﻿.app-shell {
   display: flex;
   flex-direction: column;
   min-height: 100dvh;
@@ -12,13 +12,22 @@
 }
 
 @media (max-width: 767px) {
-  .app-shell__main {
+  /* Reserve space for sticky mobile top bar (logo + avatar), aligned to actual bar height. */
+  // .app-shell__main {
+  //   padding-top: calc(3.25rem + env(safe-area-inset-top, 0px));
+  // }
+
+  .app-shell--with-bottom-tabs .app-shell__main {
     padding-bottom: 5.75rem;
   }
 }
 
 .page-shell {
-  padding: var(--spacing-xxl) var(--spacing-lg);
+  padding: var(--spacing-md) var(--spacing-lg) var(--spacing-xxl);
   max-width: 75rem;
   margin: 0 auto;
+
+  @media (min-width: 768px) {
+    padding: var(--spacing-xxl) var(--spacing-lg);
+  }
 }

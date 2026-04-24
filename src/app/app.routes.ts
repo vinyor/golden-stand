@@ -1,6 +1,5 @@
-import { Routes } from '@angular/router';
+﻿import { Routes } from '@angular/router';
 
-// Add a child route only after its page component exists (no shared placeholder route).
 export const routes: Routes = [
   {
     path: '',
@@ -13,13 +12,13 @@ export const routes: Routes = [
       },
       {
         path: 'rankings',
-        loadComponent: () => import('./pages/rankings/rankings').then((m) => m.Rankings),
-        data: { title: 'Rankings' },
+        redirectTo: '',
+        pathMatch: 'full',
       },
       {
         path: 'predictions',
-        loadComponent: () => import('./pages/predictions/predictions').then((m) => m.Predictions),
-        data: { title: 'Predicciones' },
+        redirectTo: '',
+        pathMatch: 'full',
       },
       {
         path: 'profile',
@@ -30,7 +29,38 @@ export const routes: Routes = [
         path: 'create-group',
         loadComponent: () => import('./pages/create-group/create-group').then((m) => m.CreateGroup),
         data: { title: 'Crear Grupo' },
-      }
+      },
+      {
+        path: 'grupos/:groupCode',
+        loadComponent: () => import('./layout/group-shell/group-shell').then((m) => m.GroupShell),
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            redirectTo: 'ranking',
+          },
+          {
+            path: 'inicio',
+            redirectTo: '/',
+            pathMatch: 'full',
+          },
+          {
+            path: 'ranking',
+            loadComponent: () => import('./pages/rankings/rankings').then((m) => m.Rankings),
+            data: { title: 'Ranking' },
+          },
+          {
+            path: 'prediccion',
+            loadComponent: () => import('./pages/predictions/predictions').then((m) => m.Predictions),
+            data: { title: 'Predicción' },
+          },
+          {
+            path: 'ajustes',
+            loadComponent: () => import('./pages/group-settings/group-settings').then((m) => m.GroupSettings),
+            data: { title: 'Ajustes del grupo' },
+          },
+        ],
+      },
     ],
   },
 ];

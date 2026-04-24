@@ -1,4 +1,4 @@
-<app-join-group-dialog
+﻿<app-join-group-dialog
   [open]="joinGroupDialogOpen()"
   (dismiss)="onJoinGroupDialogDismiss()"
   (joinRequest)="onJoinGroupRequest($event)"
@@ -75,7 +75,7 @@
         </div>
       </header>
       <ul class="home__panel-cards">
-        @for (g of activeGroups; track g.id) {
+        @for (g of activeGroups; track g.code) {
           <li class="home__panel-card-item">
             <app-group-card
               [iconClass]="g.iconClass"
@@ -83,6 +83,7 @@
               [groupName]="g.groupName"
               [points]="g.points"
               [participantCount]="g.participantCount"
+              (cardClick)="navigateToGroup(g.code)"
             />
           </li>
         }

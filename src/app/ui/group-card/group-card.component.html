@@ -1,7 +1,8 @@
-<button
+﻿<button
   type="button"
   class="group-card"
   [attr.aria-label]="'Abrir grupo ' + groupName()"
+  (click)="onActivate()"
 >
   <div class="group-card__top">
     <span class="group-card__icon-box" aria-hidden="true">
