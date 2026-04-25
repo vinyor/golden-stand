@@ -1,1 +1,67 @@
-﻿<p>Ranking del grupo <strong>{{ chrome.groupCode() }}</strong>.</p>
+﻿<section class="rankings" aria-labelledby="rankings-title">
+  <header class="rankings__header">
+    <p class="rankings__eyebrow">COPA MUNDIAL 2026</p>
+    <h1 id="rankings-title" class="rankings__title">
+      <span class="rankings__title-line">CLASIFICACIÓN</span>
+      <span class="rankings__title-line">{{ chrome.groupCode() }}</span>
+    </h1>
+  </header>
+
+  @if (topThree.length === 3) {
+    <section class="rankings__podium" aria-label="Top three players">
+      <article class="podium-step podium-step--silver">
+        <span class="podium-step__rank">#2</span>
+        <strong class="podium-step__name">{{ topThree[1].name }}</strong>
+        <strong class="podium-step__score">{{ topThree[1].score }}</strong>
+        <span class="podium-step__label">Points</span>
+      </article>
+
+      <article class="podium-step podium-step--gold">
+        <span class="podium-step__rank">#1</span>
+        <strong class="podium-step__name">{{ topThree[0].name }}</strong>
+        <strong class="podium-step__score">{{ topThree[0].score }}</strong>
+        <span class="podium-step__label">Points</span>
+      </article>
+
+      <article class="podium-step podium-step--bronze">
+        <span class="podium-step__rank">#3</span>
+        <strong class="podium-step__name">{{ topThree[2].name }}</strong>
+        <strong class="podium-step__score">{{ topThree[2].score }}</strong>
+        <span class="podium-step__label">Points</span>
+      </article>
+    </section>
+  }
+
+  <ul class="rankings__list rankings__list--desktop" aria-label="Remaining participants">
+    @for (player of otherParticipants; track player.name; let i = $index) {
+      <li class="rankings__item">
+        <article class="rankings__card">
+          <div class="rankings__identity">
+            <span class="rankings__position">#{{ i + 4 }}</span>
+            <span class="rankings__name">{{ player.name }}</span>
+          </div>
+          <strong class="rankings__score">{{ player.score }}</strong>
+        </article>
+      </li>
+    }
+  </ul>
+
+  <ul class="rankings__list rankings__list--mobile" aria-label="Group ranking">
+    @for (player of ranking; track player.name; let i = $index) {
+      <li class="rankings__item">
+        <article
+          class="rankings__card"
+          [class.rankings__card--gold]="i === 0"
+          [class.rankings__card--silver]="i === 1"
+          [class.rankings__card--bronze]="i === 2"
+        >
+          <div class="rankings__identity">
+            <span class="rankings__position">#{{ i + 1 }}</span>
+            <span class="rankings__name">{{ player.name }}</span>
+          </div>
+          <strong class="rankings__score">{{ player.score }}</strong>
+        </article>
+      </li>
+    }
+  </ul>
+</section>
